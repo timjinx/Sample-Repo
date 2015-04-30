@@ -3,6 +3,9 @@
 #include <fstream>
 #include <iostream>
 using namespace std;
+// Author Tim Jinkerson
+// Created 2015
+// This is a simple program to demostrate file handling and command line parameters
 
 int main ( int argc, char *argv[] )
 {
