@@ -33,14 +33,14 @@ int main()
 {
    Coin mycoin;
    mycoin.setValue( 1 );
-   cout << "My coin has a value of " << mycoin.getValue() << "\n";
-   cout << "My coin is " << mycoin.toString() << "\n";
+   cout << "My coin has a value of " << mycoin.getValue() << endl;
+   cout << "My coin is " << mycoin.toString() << endl;
    mycoin.flip();
-   cout << "My coin is " << mycoin.toString() << "\n";
+   cout << "My coin is " << mycoin.toString() << endl;
    mycoin.flip();
-   cout << "My coin is " << mycoin.toString() << "\n";
+   cout << "My coin is " << mycoin.toString() << endl;
    mycoin.flip();
-   cout << "My coin is " << mycoin.toString() << "\n";
+   cout << "My coin is " << mycoin.toString() << endl;
    return 0;
 }
 

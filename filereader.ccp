@@ -27,7 +27,7 @@ int main ( int argc, char *argv[] )
             filename.assign(argv[i]);
             ofilename.assign(filename + ".out");
          } else {
-            cout << "No file name specified" << "\n";
+            cout << "No file name specified" << endl;
             return -1;
          }
       }
@@ -36,7 +36,7 @@ int main ( int argc, char *argv[] )
          if ( i < argc ) {
             name.assign(argv[i]);
          } else {
-            cout << "No new name specified" << "\n";
+            cout << "No new name specified" << endl;
             return -1;
          }
       }
@@ -45,47 +45,47 @@ int main ( int argc, char *argv[] )
          if ( i < argc ) {
             fromname.assign(argv[i]);
          } else {
-            cout << "No name to change specified" << "\n";
+            cout << "No name to change specified" << endl;
             return -1;
          }
       }
       i++;
    }
    if ( filename.size() == 0 ) {
-      cout << "No file name specified" << "\n";
+      cout << "No file name specified" << endl;
       return -1;
    }
    if ( name.size() == 0 ) {
-      cout << "No new name specified" << "\n";
+      cout << "No new name specified" << endl;
       return -1;
    }
    if ( fromname.size() == 0 ) {
-      cout << "No name to change specified" << "\n";
+      cout << "No name to change specified" << endl;
       return -1;
    }
-   cout << "File Name: " << filename << "\n";
-   cout << "Output File Name: " <<  ofilename << "\n";
-   cout << "Name: " << name << "\n";
+   cout << "File Name: " << filename << endl;
+   cout << "Output File Name: " <<  ofilename << endl;
+   cout << "Name: " << name << endl;
 
    ifstream iptr;
    iptr.open(filename.c_str(), std::ifstream::in);
    if ( ! iptr ) {
-      cout << "Unable to read " << filename << "\n";
+      cout << "Unable to read " << filename << endl;
       return -1;
    }
    ofstream optr;
    optr.open (ofilename.c_str(), std::ofstream::out);
    if ( ! optr ) {
-      cout << "Unable to write to " << ofilename << "\n";
+      cout << "Unable to write to " << ofilename << endl;
       return -1;
    }
    while ( ! iptr.eof() ) {
       getline( iptr, line);
-      while ( line.find("Tim") < line.length() ) {
+      while ( line.find(fromname) < line.length() ) {
          line.assign(line.substr(0,line.find(fromname)) + name
               + line.substr(line.find(fromname) + fromname.length()));
       }
-      optr << line << "\n";
+      optr << line << endl;
    }
    iptr.close();
    optr.close();
