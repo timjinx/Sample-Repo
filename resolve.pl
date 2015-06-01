@@ -63,7 +63,6 @@ while (<$resolve_file>) {
         $errorflag = 1;
         next;
     }
-    $dnscount++;
     # Try to do an nslookup of a known server and check for its IP address
     print "Trying $fields[1]\n" if ($opt_v == 1);
     $success = 0;
@@ -71,6 +70,7 @@ while (<$resolve_file>) {
     while (<@nslookup_output>) {
         next unless ( grep /$test_ip/, $_);
         $success = 1;
+        $dnscount++;
     }
     if ( $success == 1 ) {
         print "SUCCESS: Used $fields[1] to get the IP address of  $test_server\n" if ($opt_v == 1);
