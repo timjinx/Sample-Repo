@@ -23,5 +23,6 @@ print "My coin's face is ",$mycoin2->print_face(),"\n";
 print "Flipping it\n";
 $mycoin2->flip();
 print "My coin's face is ",$mycoin2->print_face(),"\n";
+print "========================================\n";
+print $mycoin->toString() . "\n";
 
-print $mycoin.toString() . "\n";
