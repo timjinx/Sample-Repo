@@ -3,10 +3,10 @@ use Math::Round;
 sub new
 {
    my $class = shift;
-   my $val = shift;
+   my $denom = shift;
    my $self = {};
    bless ( $self, $class);
-   $self->{value} = $val;
+   $self->{denomination} = $denom;
    $self->flip();
    return $self;
 }
@@ -20,7 +20,7 @@ sub flip
 sub denomination
 {
    my $self = shift;
-   return $self->{value};
+   return $self->{denomination};
 }
 
 sub setValue
