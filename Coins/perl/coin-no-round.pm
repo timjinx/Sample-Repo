@@ -50,7 +50,7 @@ sub print_face
 sub toString
 {
    my $self = shift;
-   return "Denomination: ", $self->denomination(), "\nFace: ", $self->print_face(), "\n";
+   return "Denomination: " . $self->denomination() . " Face: " .  $self->print_face();
 }
 
 1;
