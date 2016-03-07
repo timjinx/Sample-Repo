@@ -48,4 +48,10 @@ sub print_face
    }
 }
 
+sub toString
+{
+   my $self = shift;
+   return "Denomination: ", $self->denomination(), "\nFace: ", $self->print_face(), "\n";
+}
+
 1;
