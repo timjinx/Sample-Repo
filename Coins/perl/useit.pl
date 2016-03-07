@@ -1,13 +1,13 @@
 use Coin;
 $mycoin = Coin->new(10);
-print "My coin's value is ",$mycoin->value(),"\n";
+print "My coin's denomination is ",$mycoin->denomination(),"\n";
 print "My coin's face is ",$mycoin->print_face(),"\n";
 $mycoin->flip();
 print "My coin's face is ",$mycoin->print_face(),"\n";
 
 
 $mycoin2 = Coin->new(5);
-print "My coin's value is ",$mycoin2->value(),"\n";
+print "My coin's denomination is ",$mycoin2->denomination(),"\n";
 print "My coin's face is ",$mycoin2->print_face(),"\n";
 $mycoin2->flip();
 print "My coin's face is ",$mycoin2->print_face(),"\n";

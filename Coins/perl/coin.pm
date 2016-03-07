@@ -17,7 +17,7 @@ sub flip
    $self->{face} = round(rand(1));
 }
 
-sub value
+sub denomination
 {
    my $self = shift;
    return $self->{value};
