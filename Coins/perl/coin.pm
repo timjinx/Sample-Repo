@@ -3,10 +3,10 @@ use Math::Round;
 sub new
 {
    my $class = shift;
-   my $denom = shift;
+   my $val = shift;
    my $self = {};
    bless ( $self, $class);
-   $self->{denomination} = $denom;
+   $self->{value} = $val;
    $self->flip();
    return $self;
 }
@@ -17,10 +17,10 @@ sub flip
    $self->{face} = round(rand(1));
 }
 
-sub denomination
+sub value
 {
    my $self = shift;
-   return $self->{denomination};
+   return $self->{value};
 }
 
 sub setValue
@@ -46,12 +46,6 @@ sub print_face
    } else {
       return "Tails";
    }
-}
-
-sub toString
-{
-   my $self = shift;
-   return "Denomination: ", $self->denomination(), "\nFace: ", $self->print_face(), "\n";
 }
 
 1;
