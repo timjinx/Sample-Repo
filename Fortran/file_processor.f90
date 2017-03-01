@@ -13,9 +13,11 @@ program file_handler
          write(*,*) 'Verbose mode'
          verbose = .TRUE.
       end if
-      if ( arg .eq. "-f" ) then
-         call GETARG(i + 1,file_name)
-         param_found = .TRUE.
+	  if ( i < n ) then
+         if ( arg .eq. "-f" ) then
+            call GETARG(i + 1,file_name)
+            param_found = .TRUE.
+         end if
       end if
    end do
    if ( .NOT. param_found ) then
