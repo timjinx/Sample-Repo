@@ -4,4 +4,4 @@ to compile run
 f95 file_processor.f90 -o file_processor.exe
 
 To run:
-./file3.exe -f test.txt -v
+./file_processor.exe -f test.txt -v
