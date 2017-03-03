@@ -1,9 +1,0 @@
-Woodward,Jackie,71.2
-Jinkerson,Tim,75.0
-Jinkerson,Stephanie,82.4
-Smith,Jackie,71.2
-Brown,Alex,67.2
-Smith,Cathy,72.3
-Jinkerson,Catherine,81.7
-Smith,Boyd,71.2
-Jinkerson,Neil,67.2
