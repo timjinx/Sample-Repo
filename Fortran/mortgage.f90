@@ -2,17 +2,20 @@ program file_handler
    implicit none
    INTEGER :: i, n
    INTEGER :: d = 0  !! Duration - Number of years
+   INTEGER :: d_m  !! Duration - Number of month
    REAL*8 :: a = 0 !! Amount borrowed
    REAL*8 :: r = 0 !! Interest Rate
-   REAL*8 :: top_line , bottom_line, ap, mp
+   REAL*8 :: r_m  !! Interest Rate (Monthly)
+   REAL*8 :: top_line , bottom_line, ap, mp 
    CHARACTER(len=25) :: arg, c_a, c_r, c_d
+   CHARACTER(LEN=20) :: FMT
    n = IARGC ( )
    do i=1,n 
       call GETARG(i,arg)
       if ( i < n ) then
          if ( arg .eq. "-a" ) then
             call GETARG(i + 1, c_a)
-            write (*,*) "The amount borrowed is ", trim(c_a), " (currency)"
+            write (*,*) "The amount borrowed is £", trim(c_a)
             read(c_a,*) a
          end if
          if ( arg .eq. "-r" ) then
@@ -39,12 +42,16 @@ program file_handler
       write (*,*) "Please enter duration using the -d parameter"
       call exit(-1)
    end if
-   top_line = ( a * r * ( 1 + ( r / 100 ))**d )
-   bottom_line = 100 * (( (1 + ( r / 100 ))**d) -1)
-   ap = top_line / bottom_line 
-   ! ap = nint(ap * 100.0) * 1E-2
-   mp = ap / 12 
-   write (*,*) "Annual replayments will be ", INT(ap)
-   write (*,*) "Monthly replayments will be ", INT(mp)
-   write (*,*) "Total cost of loan is ", INT( ap * d ) 
+   !! Capitalise Monthly
+   r_m = r / 12
+   d_m = d * 12
+   top_line = ( a * r_m * ( 1 + ( r_m / 100 ))**d_m )
+   bottom_line = 100 * (( (1 + ( r_m / 100 ))**d_m) -1)
+   mp = top_line / bottom_line 
+   ap = mp * 12
+
+   FMT = '(" ",A,"£",F10.2)'
+   write (*,FMT) "Annual replayments will be ", ap
+   write (*,FMT) "Monthly replayments will be ", mp
+   write (*,FMT) "Total cost of loan is ", (ap * d) 
 end program file_handler
