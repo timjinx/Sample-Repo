@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 import java.lang.Math.*;
 import java.text.*;
-public class mortgage {
+public class mortgage1 {
   public static void main (String[] args) {
     String p_a = null;
     String p_r = null;
@@ -46,19 +46,19 @@ public class mortgage {
       i++;
     }
     a = Double.parseDouble(p_a);
-    r = Double.parseDouble(p_r);
-    d = Integer.valueOf(p_d);
+    r = Double.parseDouble(p_r) / 12;
+    d = Integer.valueOf(p_d) * 12;
     double top_line = ( a * r * Math.pow(( 1 + ( r / 100 )),d) );
     double bottom_line = 100 * (( Math.pow((1 + ( r / 100 )),d)) -1);
-    double ap = top_line / bottom_line;
-    double mp = ap / 12;
+    double mp = top_line / bottom_line;
+    double ap = mp * 12;
     DecimalFormat f = new DecimalFormat("###,###");
     DecimalFormat f2 = new DecimalFormat("###,###.00");
     System.out.println("The amount borrowed is £" + f.format(a));
-    System.out.println("The interest rate is " + f.format(r) + "%");
-    System.out.println("The loan duration is " + f.format(d) + " years");
+    System.out.println("The interest rate is " + p_r + "%");
+    System.out.println("The loan duration is " + p_d + " years");
     System.out.println("Annual replayments will be £" + f2.format(ap));
     System.out.println("Monthly replayments will be £" + f2.format(mp));
-    System.out.println("Total cost of loan is £" + f2.format(( ap * d )));
+    System.out.println("Total cost of loan is £" + f2.format(( ap * Integer.valueOf(p_d) )));
   }
 }
