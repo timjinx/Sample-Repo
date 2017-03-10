@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 import java.lang.Math.*;
 import java.text.*;
-public class mortgage1 {
+public class mortgage {
   public static void main (String[] args) {
     String p_a = null;
     String p_r = null;

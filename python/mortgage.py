@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from optparse import OptionParser
 import math
 def main () :
@@ -19,7 +20,7 @@ def main () :
        print "You must specify an duration"
        exit(-1)
     v_amount = int(options.amount)
-    v_interest = int(options.interest)
+    v_interest = float(options.interest)
     v_duration = int(options.duration)
     monthly_interest = float(v_interest) / 12
     duration_in_months = v_duration * 12
@@ -27,8 +28,11 @@ def main () :
     bottom_line = 100 * (( (1 + ( monthly_interest / 100 ))**duration_in_months) -1);
     monthly_payment = top_line / bottom_line ;
     annual_payment = monthly_payment * 12;
-    print "Annual replayments will be %0.2f" % (annual_payment,)
-    print "Monthly replayments will be %0.2f" % (monthly_payment,)
-    print "Total cost of loan will be %0.2f" % (annual_payment * v_duration)
+    print "The amount borrowed is " +  unichr(163) + "%0.2f" % (v_amount)
+    print "The interest rate is {:.2f}".format(v_interest)
+    print "The loan duration is {:0>2d} years".format(v_duration)
+    print "Annual replayments will be " +  unichr(163) + "%0.2f" % (annual_payment,)
+    print "Monthly replayments will be " +  unichr(163) + "%0.2f" % (monthly_payment,)
+    print "Total cost of loan will be " +  unichr(163) + "%0.2f" % (annual_payment * v_duration)
 
 main()
