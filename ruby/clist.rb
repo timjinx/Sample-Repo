@@ -79,6 +79,13 @@ OptionParser.new do |opts|
   end
 end.parse!
 
+unless options[:count]
+  abort("No coins specified")
+end
+unless options[:flips]
+  abort("No number of times to flip specified")
+end
+
 ccount = options[:count] # Number of coins
 fcount = options[:flips] # Number of flips
 
