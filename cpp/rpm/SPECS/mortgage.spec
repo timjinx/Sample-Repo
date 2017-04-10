@@ -1,6 +1,6 @@
 %define name mortgage
 %define version 0.0.1
-%define release 0
+%define release 1
 
 Summary: configures ldap for use in the BMC
 Name: %{name}
@@ -42,6 +42,8 @@ mkdir -p %{buildroot}
 # cd %{buildroot}
 mkdir -p %{buildroot}/usr/bin
 install -s -m 755 mortgage %{buildroot}/usr/bin/mortgage
+mkdir -p %{buildroot}/%{_mandir}/man9/
+cp mortgage.man  %{buildroot}/%{_mandir}/man9/mortgage.man
 
 %post
 
@@ -52,7 +54,10 @@ rm -rf %{buildroot}
 
 %files
 %attr(0755,root,root) /usr/bin/mortgage
+%attr(0755,root,root) %{_mandir}/man9/mortgage.man.gz
 
 %changelog
+* Mon Apr 10 2017 Tim Jinkerson <tim.jinkerson@oracle.com>
+- Added a Man Page
 * Tue Apr 04 2017 Tim Jinkerson <tim.jinkerson@oracle.com>
 - Initial Build
