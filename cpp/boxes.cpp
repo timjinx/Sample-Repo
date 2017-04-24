@@ -1,5 +1,10 @@
 #include <iostream>
 
+// Class Box stored length, breadth and height
+// Class ColouredBox extends Box to store the colour of the box
+// ColouredBox has two constructors one taking just the colour
+// and one taking colour and the dimensions
+
 using namespace std;
 
 class Box {
@@ -27,8 +32,6 @@ class Box {
 };
 
 class ColouredBox: public Box {
-   private:
-      string colour; // The colour of the box
    public :
       void setColour(string v_colour) {
          colour = v_colour;
@@ -36,13 +39,31 @@ class ColouredBox: public Box {
       string getColour() {
          return colour;
       }
+      ColouredBox( string v_colour );
+      ColouredBox( string v_colour, double v_length, double v_breadth, double v_height );
+   private:
+      string colour; // The colour of the box
 };
+
+ColouredBox::ColouredBox( string v_colour ) {
+   colour = v_colour;
+}
+ColouredBox::ColouredBox( string v_colour, double v_length, double v_breadth, double v_height ) {
+   colour = v_colour;
+   Box::setLength(v_length);
+   Box::setBreadth(v_breadth);
+   Box::setHeight(v_height);
+}
 
 int main( ) {
    Box Box1;        // Declare Box1 of type Box
    Box Box2;        // Declare Box2 of type Box
    Box Box3;        // Declare Box3 of type Box
-   ColouredBox Box4;  // Declare a box with colour
+   // Declare a box with colour
+   ColouredBox Box4("Red");
+   // box 5 specification
+   // Using the second constructor
+   ColouredBox Box5("Blue", 5.0, 6.0, 2.0);
  
    // box 1 specification
    Box1.setHeight(5.0); 
@@ -57,12 +78,12 @@ int main( ) {
    // box 3 specification
    Box3.setHeight(10.0);
    Box3.setBreadth(13.0);
+   // Box3.setColour("Blue"); // This is illegal because it's not a coloured box
 
    // box 4 specification
    Box4.setHeight(6.0);
    Box4.setLength(3.0);
    Box4.setBreadth(2.0);
-   Box4.setColour("Red");
 
    // volume of box 1
    cout << "Volume of Box1 : " << Box1.getVolume() << endl;
@@ -75,6 +96,9 @@ int main( ) {
 
    // Box 4
    cout << "Box 4 is " << Box4.getColour() << " and has a volume of " << Box4.getVolume() <<endl;
+	
+   // Box 5
+   cout << "Box 5 is " << Box5.getColour() << " and has a volume of " << Box5.getVolume() <<endl;
 	
    return 0;
 }
