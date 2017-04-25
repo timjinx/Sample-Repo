@@ -23,7 +23,7 @@ class Box {
          height = v_height;
       }
       double getVolume() {
-         if ( length == 0 or breadth == 0 or height == 0 ) {
+         if ( (int) length == 0 or (int) breadth == 0 or (int) height == 0 ) {
            return 0;
          } else {
            return length * breadth * height;
