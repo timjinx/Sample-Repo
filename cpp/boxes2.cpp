@@ -13,6 +13,8 @@ class Box {
       double breadth;  // Breadth of a box
       double height;   // Height of a box
    public :
+      Box();
+      Box( double v_length, double v_breadth, double v_height );
       void setLength(double v_length) {
          length = v_length;
       }
@@ -30,8 +32,17 @@ class Box {
          }
       }
 };
+Box::Box(void) { }
+Box::Box( double v_length, double v_breadth, double v_height ) {
+   length  = v_length;
+   breadth = v_breadth;
+   height  = v_height;
+}
 
 class ColouredBox: public Box {
+   private:
+      string colour; // The colour of the box
+
    public :
       void setColour(string v_colour) {
          colour = v_colour;
@@ -48,15 +59,12 @@ class ColouredBox: public Box {
          Box::setBreadth(v_breadth);
          Box::setHeight(v_height);
       }
-
-   private:
-      string colour; // The colour of the box
 };
 
 int main( ) {
-   Box Box1;        // Declare Box1 of type Box
-   Box Box2;        // Declare Box2 of type Box
-   Box Box3;        // Declare Box3 of type Box
+   Box Box1;                  // Declare Box1 of type Box
+   Box Box2(10.0,12.0,13.0);  // Declare Box2 using the constructor
+   Box Box3;                  // Declare Box3 of type Box
    // Declare a box with colour
    ColouredBox Box4("Red");
    // box 5 specification
@@ -68,11 +76,6 @@ int main( ) {
    Box1.setLength(6.0); 
    Box1.setBreadth(7.0);
 
-   // box 2 specification
-   Box2.setHeight(10.0);
-   Box2.setLength(12.0);
-   Box2.setBreadth(13.0);
-	
    // box 3 specification
    Box3.setHeight(10.0);
    Box3.setBreadth(13.0);
