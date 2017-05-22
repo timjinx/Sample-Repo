@@ -1,7 +1,8 @@
 import sys
 import random
 from datetime import datetime
-from optparse import OptionParser
+import argparse
+
 class Coin :
     def __init__(self) :
         self.side = 0
@@ -38,30 +39,31 @@ class CList() :
         return heads
 
 def main() :
-    parser = OptionParser()
-    parser.add_option("-c", "--coins", dest="ccount",
+    parser = argparse.ArgumentParser(description='Flip some coins.')
+    parser.add_argument("-c", "--coins", type=int, dest="ccount", required=True,
            help="the number of coins", metavar="COINS")
-    parser.add_option("-f", "--flips", dest="flips",
-           help="the number of flips", metavar="FLIPS")
-    (options, args) = parser.parse_args()
-    try :
-        ccount = int(options.ccount)
-    except ValueError :
-        print "Not a number"
-        sys.exit()
 
-    try :
-        fcount = int(options.flips)
-    except ValueError :
-        print "Not a number"
-        sys.exit()
+    parser.add_argument("-f", "--flips", type=int, dest="flips", required=True,
+           help="the number of flips", metavar="FLIPS")
+
+    parser.add_argument("-s", "--sort", dest="sorttype", default="key", required=False,
+           help="sort by key or value", metavar="SORTTYPE")
+    args = parser.parse_args()
+
+    if args.sorttype == "key" :
+       print "Sorting by key"
+    elif args.sorttype == "value" :
+       print "Sorting by value"
+    else :
+       print "Unknown Sort Type, try key or value"
+       sys.exit()
 
     startTime = datetime.now()
     hoccurs = {}
 
-    coins=CList(ccount)
+    coins=CList(args.ccount)
 
-    for flip in range(fcount) :
+    for flip in range(args.flips) :
         coins.flip()
         hc = coins.countheads()
         if hoccurs.has_key(hc) :
@@ -69,8 +71,14 @@ def main() :
         else :
             hoccurs[hc] = 1
 
-    for key in sorted(hoccurs.iterkeys()):
-        print "Head Count %s occurs %s times" % (key, hoccurs[key])
+    if args.sorttype == "key" :
+       # Sort by keys
+       for key in sorted(hoccurs.iterkeys()):
+           print "Head Count %s occurs %s times" % (key, hoccurs[key])
+    else :
+       # Sort by values
+       for key, value in sorted(hoccurs.iteritems(), key=lambda (k,v): (v,k)):
+           print "Head Count %s occurs %s times" % (key, value)
 
     print(datetime.now()-startTime)
 
