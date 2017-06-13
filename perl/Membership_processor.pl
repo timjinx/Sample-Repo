@@ -9,6 +9,7 @@ die "Use -f to specify file name" unless (defined $opt_f);
 die "Unable to open input file " unless (open my $infile, "<", $opt_f);
 while (my $line = <$infile>) {
     chomp $line;
+    $line =~ s/"//g;
     @record = split(/,/,$line);
     $constituency=$record[2];
     $branch=$record[4];
@@ -23,6 +24,7 @@ while (my $line = <$infile>) {
     $email=$record[28];
     $gender="Male";
     $gender="Female" if ($record[30] eq "F");
+    $gender="Other" if ($record[30] eq "O");
     print $email . "\t" . 
           $first_name . "\t" . 
           $last_name . "\t" .
@@ -32,7 +34,6 @@ while (my $line = <$infile>) {
           $branch . "\t" . 
           $ward . "\t" . 
           $gender . "\t" .
-          $member . "\n"
-          ;
+          $member . "\n" if (grep /@/, $email);
 }
 close $infile;
