@@ -1,0 +1,18 @@
+.\" Process this file with
+.\" groff -man -Tascii foo.1
+.\"
+.\" Convert to a pdf using 'man -t ./p3 | ps2pdf - > .pdf'
+.TH P1 Dummy Program 1 "April 2017" "Does nothing useful"
+.SH NAME
+p3 \- Does nothing - a dummy
+.SH SYNOPSIS
+.B p3
+.SH DESCRIPTION
+.B p3
+.SH BUGS
+None known
+.SH Build
+make
+.SH Author
+Tim Jinkerson - GIT <tim.jinkerson@oracle.com>
+

@@ -1,0 +1,5 @@
+CXX=g++
+SRCS=p2.cpp
+p2: p2.cpp
+	$(CXX) -o p2 ${SRCS}
+
