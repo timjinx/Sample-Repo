@@ -1,0 +1,12 @@
+In response to an article on creating objects in various languages by Mike Merin
+I thought I'd try it in Perl.
+The original article can be found here.
+https://mikemerin.github.io/Objected-Oriented-Languages/
+
+$ ./test_dog.pl -I .  dog.pl
+dog=HASH(0x60002b780)
+Lily, the 8 year old Pit Mix
+Lily, the 9 year old Pit Mix
+hello Lily
+tjinkers@TJINKERS-LAP ~/perl/dog
+$
