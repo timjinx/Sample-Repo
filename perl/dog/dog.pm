@@ -22,7 +22,11 @@ sub info {
 sub birthday {
     my $self = shift;
     $self->{age}++;
-    return;
+    return "Happy birthday " . $self->{name} . "! You are now " . $self->{age} . " years old.";
+}
+sub bark {
+    my $self = shift;
+    return $self->{name} . " says Woof!"
 }
 sub greet {
     my $self = shift;
