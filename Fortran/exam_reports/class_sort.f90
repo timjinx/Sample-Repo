@@ -1,4 +1,4 @@
-program file_handler
+program class_sort
    ! Global Declarations
    INTEGER :: rcount
    LOGICAL :: verbose
@@ -119,4 +119,4 @@ contains
       end do
    end subroutine swap
       
-end program file_handler
+end program class_sort
