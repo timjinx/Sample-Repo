@@ -1,4 +1,4 @@
-program file_handler
+program mortgage
    implicit none
    INTEGER :: i, n
    INTEGER :: d = 0  !! Duration - Number of years
@@ -54,4 +54,4 @@ program file_handler
    write (*,FMT) "Annual replayments will be ", ap
    write (*,FMT) "Monthly replayments will be ", mp
    write (*,FMT) "Total cost of loan is ", (ap * d) 
-end program file_handler
+end program mortgage
