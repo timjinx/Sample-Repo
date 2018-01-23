@@ -15,7 +15,7 @@ along with the total cost of the loan
 .SH BUGS
 None known
 .SH Build
-/usr/local/git/bin/epm-make -svndir /svn/packages/ git-syscheck
+rpmbuild -ba mortgage.spec
 .SH Author
 Tim Jinkerson - GIT <tim.jinkerson@oracle.com>
 
