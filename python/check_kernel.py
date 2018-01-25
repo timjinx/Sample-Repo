@@ -63,8 +63,8 @@ for server in ifile :
         child.sendline('yes')
         i = child.expect(['Password:', 'password:'])
      child.sendline(v_password)
-     j = child.expect(['Permission', pexpect.EOF], timeout=None)
-     if j==0:
+     j = child.expect(['Permission','password:','Password:', pexpect.EOF], timeout=None)
+     if j in (0, 1, 2) :
         print "Unable to access " + server
         continue
      cmd_show_data =  child.before
