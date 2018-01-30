@@ -27,7 +27,6 @@ int main(int argc, char** argv)
    FILE *ifptr;
    FILE *ofptr;
    char * line = NULL;
-   char * oline = NULL;
    size_t len = 0;
    ssize_t read;
    char *pos;
