@@ -6,9 +6,16 @@ void helptext(char* p_name)
    printf("Usage: %s [--dos2unix,--unix2dos] -i <input file> -o <output file>\n", p_name);
 }
 
-void strip(char* line)
+void strip(char* v_line)
 {
-   printf("Line is %s", line);
+   int len;
+   int pos=0; 
+   len = strlen(v_line);
+   for (pos=len-1; pos>0; pos--) {
+      if ( v_line[pos] == '\x0a' || v_line[pos] == '\x0d') {
+         v_line[pos]='\x00';
+      }
+   }
 }
 
 int main(int argc, char** argv)
@@ -17,13 +24,15 @@ int main(int argc, char** argv)
    int unix2dos=0;
    char *infile;
    char *outfile;
-   char *terminator;
    FILE *ifptr;
    FILE *ofptr;
    char * line = NULL;
+   char * oline = NULL;
    size_t len = 0;
    ssize_t read;
    char *pos;
+   unsigned char cr = 0x0d;
+   unsigned char lf = 0x0a;
 
    if ( argc < 5 ) {
       helptext(argv[0]);
@@ -33,11 +42,9 @@ int main(int argc, char** argv)
    while (i < argc ) {
       if ( strcmp(argv[i], "--dos2unix")==0 ) {
          dos2unix=1;
-         terminator="\x0a\x00";
       }
-      if ( strcmp(argv[i], "-unix2dos")==0 ) {
+      if ( strcmp(argv[i], "--unix2dos")==0 ) {
          unix2dos=1;
-         terminator="\x0d\x0a\x00";
       }
       if ( strcmp(argv[i], "-i")==0 ) {
          i++;
@@ -49,7 +56,13 @@ int main(int argc, char** argv)
       }
       i++;
    }
-   /* Check that in input file and the output file are not the same */
+   // Check that only one flag is set
+   if ( ( dos2unix + unix2dos ) != 1 )  {
+      puts("Select either dos2unix or unix2dos");
+      helptext(argv[0]);
+      exit(EXIT_FAILURE);
+   }
+   // Check that in input file and the output file are not the same 
    if (strcmp(infile,outfile)==0) {
       puts("Input and output file may not be the same");
       helptext(argv[0]);
@@ -66,12 +79,13 @@ int main(int argc, char** argv)
       exit(EXIT_FAILURE);
    }
    while ((read = getline(&line, &len, ifptr)) != -1) {
-      /* printf("Retrieved line of length %zu :\n", read); */
-      if (len > 0 && line[len-1] == '\n') line[--len] = '\0';
-      if (len > 0 && line[len-1] == '\r') line[--len] = '\0'; 
-      strip(&line);
-      puts(line);
-      /* fputs(terminator, ofptr); */
+      strip(line);
+      fprintf(ofptr,"%s",line);
+      if ( dos2unix == 1 ) {
+         fprintf(ofptr, "%c", lf);
+      } else {
+         fprintf(ofptr, "%c%c", cr, lf);
+      }
    }
 
    fclose(ifptr);
