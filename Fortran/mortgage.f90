@@ -51,7 +51,7 @@ program mortgage
    ap = mp * 12
 
    FMT = '(" ",A,"£",F10.2)'
-   write (*,FMT) "Annual replayments will be ", ap
-   write (*,FMT) "Monthly replayments will be ", mp
+   write (*,FMT) "Annual repayments will be ", ap
+   write (*,FMT) "Monthly repayments will be ", mp
    write (*,FMT) "Total cost of loan is ", (ap * d) 
 end program mortgage
