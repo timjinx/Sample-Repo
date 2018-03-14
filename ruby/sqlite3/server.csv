@@ -1,0 +1,4 @@
+name,ip_addr,memory,disk
+anteater,192.168.1.2,32,3000
+bonobo,192.168.1.2,64,2000
+catapillar,192.168.1.3,48,6000
