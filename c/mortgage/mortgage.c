@@ -10,7 +10,7 @@ int main(int argc, char** argv)
 {
    int amount=0;
    int duration=0;
-   double interest_rate, rm, dm;
+   double interest_rate=0, rm, dm;
    double top_line, bottom_line, mp, ap;
    if ( argc < 6 ) {
       helptext(argv[0]);
