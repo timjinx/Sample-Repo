@@ -1,12 +1,18 @@
 use strict;
 use Getopt::Std;
-our $opt_f;
+our ($opt_f, $opt_o);
 my @record;
+my ($fh, $oline);
 my ($constituency, $branch, $ward, $member, $title, $first_name, $last_name, $full_name);
 my ($email, $gender);
-getopt('f:');
-die "Use -f to specify file name" unless (defined $opt_f);
+getopt('f:o:');
+die "Use -f to specify file name, -o to specify output file" unless (defined $opt_f);
 die "Unable to open input file " unless (open my $infile, "<", $opt_f);
+if ( defined $opt_o ) {
+    open ( $fh , ">", $opt_o );
+} else {
+    $fh = *STDOUT;
+}
 while (my $line = <$infile>) {
     chomp $line;
     $line =~ s/"//g;
@@ -25,15 +31,18 @@ while (my $line = <$infile>) {
     $gender="Male";
     $gender="Female" if ($record[30] eq "F");
     $gender="Other" if ($record[30] eq "O");
-    print $email . "\t" . 
-          $first_name . "\t" . 
-          $last_name . "\t" .
-          $full_name . "\t" .
-          $title . "\t" .
-          $constituency . "\t" . 
-          $branch . "\t" . 
-          $ward . "\t" . 
-          $gender . "\t" .
-          $member . "\n" if (grep /@/, $email);
+    next unless  (grep /@/, $email);
+    $oline=$email . "\t" . 
+           $first_name . "\t" . 
+           $last_name . "\t" .
+           $full_name . "\t" .
+           $title . "\t" .
+           $constituency . "\t" . 
+           $branch . "\t" . 
+           $ward . "\t" . 
+           $gender . "\t" .
+           $member;
+    print $fh $oline . "\n";
 }
 close $infile;
+close $fh if ( defined $opt_o );
