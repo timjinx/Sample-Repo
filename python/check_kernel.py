@@ -1,6 +1,7 @@
 import pexpect
 import getpass
 import os.path
+import os, sys
 from optparse import OptionParser
 parser = OptionParser()
 parser.add_option("-o", "--ofile", dest="ofilename",
@@ -43,7 +44,8 @@ v_password = getpass.getpass("Password: ")
 if options.verbose :
    print "reading file " + ifilename + "\nwrite to file " + ofilename + "\n"
 
-v_commands = [ 'hostname -f', 'hostname -i', 'uname -s', 'uname -r' ]
+# v_commands = [ 'hostname -f', 'hostname -i', 'uname -s', 'uname -r' ]
+v_commands = [ 'hostname -f', 'hostname -i', 'uname -s', 'uname -r', 'rpm -qf /etc/oracle-release' ]
 
 ifile = open(ifilename, 'r')
 ofile = open(ofilename, 'w')
@@ -72,6 +74,8 @@ for server in ifile :
      for data in cmd_output:
         if data.find(server) >= 0 :
            ofile.write(data.strip() + "\n")
+           ofile.flush()
+           os.fsync(ofile)
      if options.verbose :
         print "Processed " + server
 
