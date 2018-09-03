@@ -20,11 +20,9 @@ email_content.close()
 msg = MIMEText(email_body)
 
 msg['Subject'] = "This is my email message"
-msg['From'] = "me@email.com"
-msg['To'] = "you@email.com"
+msg['From'] = "sender@example.com"
+msg['To'] = "recipient1@example.com,recipient2@example.com"
 
-s = smtplib.SMTP("192.168.1.1",25)
-s.sendmail(msg['From'], msg['To'], msg.as_string())
+s = smtplib.SMTP("smtphost",25)
+s.sendmail(msg['From'], msg['To'].split(","), msg.as_string())
 s.quit()
-
-
