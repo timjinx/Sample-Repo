@@ -1,0 +1,5 @@
+Package: dos2unix
+Version: 0.1
+Maintainer: Tim Jinkerson
+Architecture: all
+Description: Dos to Unix Program
