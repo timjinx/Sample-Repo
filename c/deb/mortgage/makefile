@@ -1,4 +1,6 @@
 CXX=gcc
+GZIP=gzip
+CP=/bin/cp
 PNAME=mortgage
 SRCS=${PNAME}.c
 DPKG-DEB=/usr/bin/dpkg-deb
