@@ -17,5 +17,5 @@ None known
 .SH Build
 rpmbuild -ba mortgage.spec
 .SH Author
-Tim Jinkerson - GIT <tim.jinkerson@oracle.com>
+Tim Jinkerson - tim.jinkerson@aol.com
 
