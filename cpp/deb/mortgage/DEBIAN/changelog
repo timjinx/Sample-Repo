@@ -1,0 +1,4 @@
+mortgage (0.0.2) stable; urgency=low
+ * Added a change log
+ * Fixed email address
+-- Tim Jinkerson <tim.jinkerson@aol.com> Wed Sep 19 14:40:25 DST 2018
