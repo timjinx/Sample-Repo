@@ -1,9 +1,12 @@
 CXX=gcc
-SRCS=dos2unix.c
+PNAME=dos2unix
+SRCS=${PNAME}.c
 DPKG-DEB=/usr/bin/dpkg-deb
 
-dos2unix.deb: dos2unix/usr/local/bin/dos2unix
+${PNAME}: ${PNAME}/usr/local/bin/${PNAME}
 	$(DPKG-DEB) --build dos2unix
+	rm -rf ${PNAME}/usr/local/bin
 
-dos2unix/usr/local/bin/dos2unix: dos2unix.c
-	$(CXX) -o dos2unix/usr/local/bin/dos2unix ${SRCS}
+${PNAME}/usr/local/bin/${PNAME}: ${PNAME}.c
+	mkdir -p ${PNAME}/usr/local/bin
+	$(CXX) -o ${PNAME}/usr/local/bin/${PNAME} ${SRCS}
