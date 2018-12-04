@@ -1,12 +1,12 @@
 module boxClass
      implicit none
      private
-     public :: Box, printBox, setBoxLength, setBoxHeight, setBoxBreadth
+     public :: Box, printBox, setBoxLength, setBoxHeight, setBoxBreadth, destructBox
 	 ! Using an implicit constructor
      type Box
-         real :: length
-	     real :: breadth
-	     real :: height
+         real, allocatable :: length
+	     real, allocatable :: breadth
+	     real, allocatable :: height
      end type Box
 contains
      subroutine printBox(this)
@@ -30,10 +30,17 @@ contains
 		 real , intent(in) :: newBreadth
 		 this%breadth = newBreadth
 	 end subroutine setBoxBreadth
+	 subroutine destructBox(this)
+	     type(Box) :: this
+		 write(*,*) 'In Destructor'
+		 if (ALLOCATED (this % length)) deallocate(this % length)
+		 if (ALLOCATED (this % breadth)) deallocate(this % breadth)
+		 if (ALLOCATED (this % height)) deallocate(this % height)
+	 end subroutine destructBox
 end module boxClass
 
 program box_test
-   use boxClass
+     use boxClass
 	 implicit none
 	 
 	 type(Box) :: my_box
@@ -45,5 +52,6 @@ program box_test
 	 call setBoxBreadth(my_box, 6.0)
 	 call setBoxHeight(my_box, 7.0)
 	 call printBox(my_box)
+	 call destructBox(my_box)
 	 
 end program box_test
