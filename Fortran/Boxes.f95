@@ -3,10 +3,11 @@ module boxClass
      private
      public :: Box, printBox, setBoxLength, setBoxHeight, setBoxBreadth, destructBox
      ! Using an implicit constructor
-     type Box
+     type :: Box
          real, allocatable :: length
          real, allocatable :: breadth
          real, allocatable :: height
+         procedure,nopass,non_overridable :: SetHight => setBoxHeight
      end type Box
 contains
      subroutine printBox(this)
@@ -39,11 +40,36 @@ contains
      end subroutine destructBox
 end module boxClass
 
+module colourBoxClass 
+    use boxClass
+    implicit none
+    private
+    public :: colourBox, printColourBox, setBoxLength, setBoxHeight, setBoxBreadth, destructBox
+    type, extends(Box) :: colourBox
+        character (len=20), allocatable :: colour
+    end type colourBox
+contains
+    subroutine setColour(this, newColour)
+        type(colourBox) :: this
+        character (*), intent(in) :: newColour
+        this%colour = newColour
+    end subroutine setColour
+    subroutine printColourBox(this)
+        type(colourBox), intent(in) :: this
+        real :: volume
+        volume = this%box%length * this%box%breadth * this%box%height
+        print *, 'This ', this%colour , ' box has a volume of ', volume
+    end subroutine printColourBox
+end module colourBoxClass
+
 program box_test
      use boxClass
+     use colourBoxClass
      implicit none
 
      type(Box) :: my_box
+     type(colourBox) :: my_colour_box
+
      my_box = Box(2,3,4)
      call printBox(my_box)
      call setBoxLength(my_box, 5.0)
@@ -53,5 +79,10 @@ program box_test
      call setBoxHeight(my_box, 7.0)
      call printBox(my_box)
      call destructBox(my_box)
+
+     my_colour_box = colourBox()
+     call setColour(my_colour_box,'Red')
+     call setBoxHeight(my_colour_box,5)
+     !call printColourBox(my_colour_box)
 
 end program box_test
