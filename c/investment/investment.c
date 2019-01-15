@@ -42,7 +42,7 @@ int main(int argc, char** argv)
       exit(-1);
    }
    printf("Principle=£%.2f\nInterest=%5.2f%%\nDuration=%d years\n", principle, interest_rate, duration);
-   printf("Capitialized %d times a year\n", capitalize);
+   if ( capitalize > 1 ) printf("Capitialized %d times a year\n", capitalize);
    amount=principle * ( pow( 1 + ( (interest_rate/100) / capitalize ), (capitalize * duration) ) );
    printf("After %d years your investment will be worth £%.2f\n", duration, amount);
    exit(0);
