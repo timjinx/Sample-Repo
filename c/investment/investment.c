@@ -9,6 +9,7 @@ void helptext(char* p_name)
 int main(int argc, char** argv)
 {
    double principle=0;
+   double amount;
    int duration=0;
    double interest_rate=0;
    int capitalize=1;
@@ -17,7 +18,6 @@ int main(int argc, char** argv)
       exit(-1);
    }
    int i=1;
-   double amount;
    while (i < argc ) {
       if ( strcmp(argv[i], "-a")==0 ) {
          i++;
@@ -37,7 +37,7 @@ int main(int argc, char** argv)
       }
       i++;
    }
-   if ( amount == 0 || interest_rate == 0 || duration == 0 ) {
+   if ( principle == 0 || interest_rate == 0 || duration == 0 ) {
       helptext(argv[0]);
       exit(-1);
    }
