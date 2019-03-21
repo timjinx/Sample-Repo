@@ -16,8 +16,8 @@ func (d *dog) birthday() {
 }
 
 func main() {
-     d1 := dog{name:"Happy", breed:"Beagle", age:6}
-	 fmt.Println(d1.toString())
-	 d1.birthday()
-	 fmt.Println(d1.toString())
+	d1 := dog{name:"Happy", breed:"Beagle", age:6}
+	fmt.Println(d1.toString())
+	d1.birthday()
+	fmt.Println(d1.toString())
 }
