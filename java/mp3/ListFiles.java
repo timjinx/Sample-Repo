@@ -17,7 +17,8 @@ import javafx.collections.MapChangeListener;
 public class ListFiles {
     public static void main(String[] args) {
       ListFiles listFiles = new ListFiles();
-      listFiles.listAllFiles("C:\\Users\\jinkersont\\Music\\mp3");
+      /* listFiles.listAllFiles("C:\\Users\\jinkersont\\Music\\mp3"); */
+      listFiles.listAllFiles("/home/tjinkerson/Music");
     }
     public void listAllFiles(String path){
          try(Stream<Path> paths = Files.walk(Paths.get(path))) {
