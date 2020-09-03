@@ -5,8 +5,10 @@ import smtplib
 import tempfile
 
 email_content = tempfile.NamedTemporaryFile(mode='w+t')
+smpt_server = "localhost"
 
 print >>email_content, "This is my content"
+print >>email_content, smtp_server
 print >>email_content, "Thank you for reading"
 
 email_content.seek(0)
@@ -23,6 +25,6 @@ msg['Subject'] = "This is my email message"
 msg['From'] = "sender@example.com"
 msg['To'] = "recipient1@example.com,recipient2@example.com"
 
-s = smtplib.SMTP("smtphost",25)
+s = smtplib.SMTP(smtp_server,25)
 s.sendmail(msg['From'], msg['To'].split(","), msg.as_string())
 s.quit()
