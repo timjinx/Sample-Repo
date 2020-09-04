@@ -5,7 +5,7 @@ import smtplib
 import tempfile
 
 email_content = tempfile.NamedTemporaryFile(mode='w+t')
-smpt_server = "localhost"
+smtp_server = "localhost"
 
 print >>email_content, "This is my content"
 print >>email_content, smtp_server
