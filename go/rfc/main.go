@@ -53,7 +53,7 @@ func main() {
 	var lscale float64 = 1
 
 	switch *cuPtr {
-	case "L":
+	case "F":
 		cscale = 1
 	case "mF":
 		cscale = float64(math.Pow(10, -3))
