@@ -38,7 +38,7 @@ func main() {
 
 	lPtr := flag.Int64("L", 0, "Inductance")
 	cPtr := flag.Int64("C", 0, "Capacitance")
-	cuPtr := flag.String("cunit", "uF", "F, mF, uF or nF")
+	cuPtr := flag.String("cunit", "uF", "F, mF, uF, nF or pF")
 	luPtr := flag.String("lunit", "uH", "H, mH, uH, nH, pH")
 
 	flag.Parse()
