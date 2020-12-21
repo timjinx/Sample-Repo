@@ -33,6 +33,12 @@ func stringfrequency(f float64) string {
 	return preturn
 }
 
+func calculateValue(c float64, l float64) float64 {
+	var freq float64 = 0
+	freq = 1 / (2 * pi * (math.Sqrt(c * l)))
+	return freq
+}
+
 func main() {
 	const pi = 3.14159
 
@@ -91,7 +97,8 @@ func main() {
 	}
 
 	var f float64
-	f = 1 / (2 * pi * (math.Sqrt((float64(capacitance) * cscale) * (float64(inductance) * lscale))))
+	f = calculateValue(float64(capacitance)*cscale, float64(inductance)*lscale)
+
 	fmt.Printf("The resonant frequency is %s\n", stringfrequency(f))
 
 }
