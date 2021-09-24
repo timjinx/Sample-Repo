@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Arrays</h2>
+
+<p>The Array object is used to store multiple values in a single variable:</p>
+
+<p id="demo"></p>
+
+<script>
+
+const jonas = {
+    firstName: "Jonas",
+    lastName: "Schmedtmann",
+    birthYear: 1993,
+    friends: ["Michael", "Peter", "Steven"],
+    job: "Teacher",
+    location: "Portugal",
+    twitter: "@jonasschmedtmann",
+    hasDriversLicence: true,
+    
+    calcAge: function () {
+        var today = new Date();
+        var year = today.getFullYear();
+        return year - this.birthYear;
+    }
+}
+
+// let message = `${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is ${jonas['friends'][0]}.`
+
+let message = `${jonas.firstName} is ${jonas['calcAge']()} years old`;
+
+document.getElementById("demo").innerHTML = message;
+
+</script>
+
+</body>
+</html>
