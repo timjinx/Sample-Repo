@@ -6,10 +6,10 @@ def findOutlier(integers):
     for el in integers:
         if (el % 2 == 1):
             ofound = el
-            ocnt = ocnt + 1
+            ocnt += 1
         else:
             efound = el
-            ecnt = ecnt + 1
+            ecnt += 1
     return(efound if ocnt > ecnt else ofound)
 
 
