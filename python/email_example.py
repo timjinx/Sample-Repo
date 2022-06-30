@@ -7,9 +7,9 @@ import tempfile
 email_content = tempfile.NamedTemporaryFile(mode='w+t')
 smtp_server = "localhost"
 
-print >>email_content, "This is my content"
-print >>email_content, smtp_server
-print >>email_content, "Thank you for reading"
+email_content.write("This is my content") 
+email_content.write(smtp_server)
+email_content.write("Thank you for reading")
 
 email_content.seek(0)
 
