@@ -9,12 +9,26 @@ def main():
     adapter = HTTPAdapter(max_retries=retry)
     session.mount('http://', adapter)
     session.mount('https://', adapter)
-    print("Looking for the International Space Station Crew")
     response = session.get(my_url)
     if response.status_code > 200 :
-       print(response)
-    else:
-       parsed = json.loads(response.text)
-       print(json.dumps(parsed, indent=4, sort_keys=True))
+        print(response)
+        exit(-1)
+    
+    parsed = json.loads(response.text)
+    for key in parsed:
+        if key == "number":
+            print("There are", parsed[key], "people in space right now")
+        if key == "people":
+            for person in parsed[key]:
+                astroname = ""
+                craft = ""
+                for n, v in person.items():
+                    if n == "name":
+                        astroname = v
+                    if n == "craft":
+                        craft = v
+                if astroname and craft:
+                    print(astroname, "is on board the", craft)
+
 
 main()
