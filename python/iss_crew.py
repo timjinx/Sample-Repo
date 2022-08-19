@@ -1,4 +1,5 @@
 import json
+import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 my_url = "http://api.open-notify.org/astros.json"
