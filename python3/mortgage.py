@@ -31,8 +31,8 @@ def main () :
     print("The amount borrowed is " +  chr(163) + "%0.2f" % (v_amount))
     print("The interest rate is {:.2f}".format(v_interest))
     print("The loan duration is {:0>2d} years".format(v_duration))
-    print("Annual replayments will be " +  chr(163) + "%0.2f" % (annual_payment,))
-    print("Monthly replayments will be " +  chr(163) + "%0.2f" % (monthly_payment,))
+    print("Annual repayments will be " +  chr(163) + "%0.2f" % (annual_payment,))
+    print("Monthly repayments will be " +  chr(163) + "%0.2f" % (monthly_payment,))
     print("Total cost of loan will be " +  chr(163) + "%0.2f" % (annual_payment * v_duration))
 
 main()
