@@ -1,0 +1,38 @@
+[
+	{
+		"order": 1,
+		"table": 1,
+		"customers": 2,
+		"order": [
+			"Fish and Chips",
+			"Chicken and Chips",
+			"Tea",
+			"Pepsi"
+		],
+		"total": 17.5
+	},
+	{
+		"order": 2,
+		"table": 2,
+		"customers": 3,
+		"order": [
+			"Pizza",
+			"Chicken and Chips",
+			"Burger and Chips",
+			"Tea",
+			"Pepsi",
+			"Orange Juice"
+		],
+		"total": 21.7
+	},
+	{
+		"order": 3,
+		"table": 1,
+		"customers": 1,
+		"order": [
+			"Coffee",
+			"Danish Pastry"
+		],
+		"total": 5.3
+	}
+]
