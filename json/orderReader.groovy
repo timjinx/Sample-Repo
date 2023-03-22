@@ -1,9 +1,7 @@
 import groovy.json.*
 import groovy.util.*
-import groovy.xml.*
 import java.util.*
 import static groovy.io.FileType.FILES
-java.lang.Object.getClass()
 
 String fileContents = new File('order2.json').text
 def slurper = new groovy.json.JsonSlurper()
