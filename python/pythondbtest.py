@@ -1,4 +1,3 @@
-# EValue Infrastructure Team - January 2024
 # Author Tim Jinkerson <tim.jinkerson@aol.com>
 # test mysql and sqlite3 connections
 
