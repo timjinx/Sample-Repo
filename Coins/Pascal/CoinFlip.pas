@@ -1,7 +1,7 @@
 program CoinFlip;
 
 uses
-  SysUtils, DateUtils, Math;
+  SysUtils, DateUtils;
 
 type
   Coin = class
@@ -92,7 +92,7 @@ var
   i, flip, hc: Integer;
 
 begin
-  if ParamCount < 4 then
+  if ParamCount < 3 then
   begin
     Writeln('Usage: CoinFlip <ccount> <flips> <sorttype>');
     Halt;
@@ -122,23 +122,25 @@ begin
   begin
     coins.Flip;
     hc := coins.CountHeads;
-    for i := 0 to Length(hoccurs) - 1 do
+    if hc < Length(hoccurs) then
+      Inc(hoccurs[hc])
+    else
     begin
-      if hoccurs[i] = hc then
-      begin
-        Inc(hoccurs[i + 1]);
-        Break;
-      end;
+      SetLength(hoccurs, hc + 1);
+      hoccurs[hc] := 1;
     end;
-    SetLength(hoccurs, Length(hoccurs) + 1);
-    hoccurs[Length(hoccurs) - 1] := 1;
   end;
 
   if sorttype = 'key' then
   begin
     // Sort by keys
     for i := 0 to Length(hoccurs) - 1 do
-      Writeln('Head Count ', i, ' occurs ', hoccurs[i], ' times');
+    begin
+      if hoccurs[i] > 0 then
+      begin
+        Writeln('Head Count ', i, ' occurs ', hoccurs[i], ' times');
+      end;
+    end;
   end
   else
   begin
@@ -156,7 +158,12 @@ begin
       end;
     end;
     for i := 0 to Length(hoccurs) - 1 do
-      Writeln('Head Count ', i, ' occurs ', hoccurs[i], ' times');
+    begin
+      if hoccurs[i] > 0 then
+      begin
+        Writeln('Head Count: ', i, ' occurs ', hoccurs[i], ' times');
+      end;
+    end;
   end;
 
   Writeln(FormatDateTime('nn:ss:zzz', Now - startTime));
