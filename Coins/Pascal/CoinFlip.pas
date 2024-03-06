@@ -85,32 +85,20 @@ end;
 
 var
   ccount, flips: Integer;
-  sorttype: string;
   startTime: TDateTime;
   hoccurs: array of Integer;
   coins: CList;
   i, flip, hc: Integer;
 
 begin
-  if ParamCount < 3 then
+  if ParamCount < 2 then
   begin
-    Writeln('Usage: CoinFlip <ccount> <flips> <sorttype>');
+    Writeln('Usage: CoinFlip <ccount> <flips> [ <sorttype> ]');
     Halt;
   end;
 
   ccount := StrToInt(ParamStr(1));
   flips := StrToInt(ParamStr(2));
-  sorttype := ParamStr(3);
-
-  if sorttype = 'key' then
-    Writeln('Sorting by key')
-  else if sorttype = 'value' then
-    Writeln('Sorting by value')
-  else
-  begin
-    Writeln('Unknown Sort Type, try key or value');
-    Halt;
-  end;
 
   Randomize;
   startTime := Now;
@@ -122,6 +110,10 @@ begin
   begin
     coins.Flip;
     hc := coins.CountHeads;
+	// Writeln('hc is', ^i, hc);
+	// if the number hc occurs as an item in the array hoccurs,
+	// add one to its value. Otherwise create the item with a 
+	// value of one.
     if hc < Length(hoccurs) then
       Inc(hoccurs[hc])
     else
@@ -131,39 +123,11 @@ begin
     end;
   end;
 
-  if sorttype = 'key' then
+
+  for i := 0 to Length(hoccurs) - 1 do
   begin
-    // Sort by keys
-    for i := 0 to Length(hoccurs) - 1 do
-    begin
-      if hoccurs[i] > 0 then
-      begin
-        Writeln('Head Count ', i, ' occurs ', hoccurs[i], ' times');
-      end;
-    end;
-  end
-  else
-  begin
-    // Sort by values
-    for i := 0 to Length(hoccurs) - 2 do
-    begin
-      for flip := i + 1 to Length(hoccurs) - 1 do
-      begin
-        if hoccurs[i] > hoccurs[flip] then
-        begin
-          hc := hoccurs[i];
-          hoccurs[i] := hoccurs[flip];
-          hoccurs[flip] := hc;
-        end;
-      end;
-    end;
-    for i := 0 to Length(hoccurs) - 1 do
-    begin
-      if hoccurs[i] > 0 then
-      begin
-        Writeln('Head Count: ', i, ' occurs ', hoccurs[i], ' times');
-      end;
-    end;
+    if hoccurs[i] > 0 then
+      Writeln('Head Count ', i, ' occurs ', hoccurs[i], ' times');
   end;
 
   Writeln(FormatDateTime('nn:ss:zzz', Now - startTime));
