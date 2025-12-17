@@ -2,7 +2,7 @@
 # This script looks for numbers containing the number 8 in a list of numbers.
 # It's purpose is to demostrate the efficiency of using bash internals
 # rather than asking the OS to start a new process.
-COUNT=5000 # count from 1 to this number
+COUNT=50000 # count from 1 to this number
 SEARCH=8 # search for this number
 
 bashit() {
@@ -43,6 +43,7 @@ countit() {
    done
    echo ${y}
 }
+echo "Counting up to ${COUNT} looking for ${SEARCH}"
 echo bash
 time bashit
 echo "=================="
