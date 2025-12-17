@@ -1,0 +1,31 @@
+$ ~/tmp/haha1.sh
+Counting up to 50000 looking for 8
+bash
+17195
+
+real    0m0.229s
+user    0m0.148s
+sys     0m0.107s
+==================
+grep
+17195
+
+real    0m40.460s
+user    0m36.064s
+sys     0m12.239s
+==================
+egrep
+17195
+
+real    0m59.378s
+user    0m48.956s
+sys     0m18.544s
+==================
+count
+17195
+
+real    0m0.106s
+user    0m0.097s
+sys     0m0.010s
+==================
+$
